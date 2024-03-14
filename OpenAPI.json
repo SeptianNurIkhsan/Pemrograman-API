@@ -1,0 +1,149 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "REST API Mahasiswa",
+    "description": "API untuk manajemen data mahasiswa",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost/8000",
+      "description": "Server lokal"
+    }
+  ],
+  "paths": {
+    "/mahasiswa": {
+      "get": {
+        "summary": "Mengambil daftar mahasiswa",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "mahasiswa": [
+                    {
+                      "id": 1,
+                      "nama": "Septi Isdayanna",
+                      "nim": "22091397045",
+                      "jurusan": "Teknik Informatika",
+                      "universitas": "Institut Teknologi Sepuluh Nopember"
+                    },
+                    {
+                      "id": 2,
+                      "nama": "Septian Nur Ikhsan",
+                      "nim": "22091397049",
+                      "jurusan": "Ilmu Hukum",
+                      "universitas": "Universitas Indonesia"
+                    },
+                    {
+                      "id": 3,
+                      "nama": "Eva Fitria Novianti P",
+                      "nim": "22091397068",
+                      "jurusan": "Akuntansi",
+                      "universitas": "Universitas Gadjah Mada"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Menambahkan mahasiswa baru",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nama": {
+                    "type": "string"
+                  },
+                  "nim": {
+                    "type": "string"
+                  },
+                  "jurusan": {
+                    "type": "string"
+                  },
+                  "universitas": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses menambahkan mahasiswa"
+          }
+        }
+      }
+    },
+    "/mahasiswa/{id}": {
+      "delete": {
+        "summary": "Menghapus mahasiswa berdasarkan ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mahasiswa berhasil dihapus"
+          }
+        }
+      },
+      "put": {
+        "summary": "Mengupdate mahasiswa berdasarkan ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nama": {
+                    "type": "string"
+                  },
+                  "nim": {
+                    "type": "string"
+                  },
+                  "jurusan": {
+                    "type": "string"
+                  },
+                  "universitas": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses mengupdate mahasiswa"
+          }
+        }
+      }
+    }
+  }
+}
